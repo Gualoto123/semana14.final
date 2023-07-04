@@ -23,4 +23,8 @@ public class Cubo extends Cuadrado {
 
         return perimetroCubo;
     }
+    @Override
+    public String toString() {
+        return "Cubo";
+    }
 }

@@ -15,4 +15,9 @@ public class Esfera extends Circulo {
 
     public double calcularVolumen() {
         return (4 * Math.PI * radio * radio * radio) / 3;
-    }}
+    }
+    @Override
+    public String toString() {
+        return "Esfera";
+    }
+}

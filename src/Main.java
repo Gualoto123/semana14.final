@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcion;
-        List<String> figuras = new ArrayList<>();
+        List<Figura> figuras = new ArrayList<>();
 
         do {
             System.out.println("Escoja una opción:");
@@ -32,12 +32,14 @@ public class Main {
                         leerPuntos(figura, scanner, 3);
                         area = figura.calcularArea();
                         perimetro = figura.calcularPerimetro();
+                        figuras.add(figura);
                         break;
                     case 2:
                         figura = new Cuadrado();
                         leerPuntos(figura, scanner, 2);
                         area = figura.calcularArea();
                         perimetro = figura.calcularPerimetro();
+                        figuras.add(figura);
                         break;
                     case 3:
                         System.out.print("Ingrese el radio del círculo: ");
@@ -45,6 +47,7 @@ public class Main {
                         figura = new Circulo(radio);
                         area = figura.calcularArea();
                         perimetro = figura.calcularPerimetro();
+                        figuras.add(figura);
                         break;
                     case 4:
                         figura = new Piramide();
@@ -52,6 +55,7 @@ public class Main {
                         area = figura.calcularArea();
                         perimetro = figura.calcularPerimetro();
                         volumen = ((Piramide) figura).calcularVolumen();
+                        figuras.add(figura);
                         break;
                     case 5:
                         figura = new Cubo();
@@ -59,6 +63,7 @@ public class Main {
                         area = figura.calcularArea();
                         perimetro = figura.calcularPerimetro();
                         volumen = ((Cubo) figura).calcularVolumen();
+                        figuras.add(figura);
                         break;
                     case 6:
                         System.out.print("Ingrese el radio de la esfera: ");
@@ -66,6 +71,7 @@ public class Main {
                         figura = new Esfera(radioEsfera);
                         area = figura.calcularArea();
                         volumen = ((Esfera) figura).calcularVolumen();
+                        figuras.add(figura);
                         break;
                     default:
                         continue;
@@ -73,34 +79,44 @@ public class Main {
 
                 String informacionFigura = "-------------------------------\n";
                 informacionFigura += "       FIGURA      \n";
-                informacionFigura += "Figura: " + figura.getClass().getSimpleName() + "\n";
+                informacionFigura += figura.toString();
                 informacionFigura += "Área: " + area + "\n";
-
-                // para figuras de tres dimensiones
+                informacionFigura += "Perímetro: " + perimetro + "\n";
                 if (figura instanceof Piramide) {
-                    informacionFigura += "Perímetro: " + perimetro + "\n";
                     informacionFigura += "Volumen: " + volumen + "\n";
                 } else if (figura instanceof Cubo) {
-                    informacionFigura += "Perímetro: " + perimetro + "\n";
                     informacionFigura += "Volumen: " + volumen + "\n";
                 } else if (figura instanceof Esfera) {
                     informacionFigura += "Volumen: " + volumen + "\n";
                 }
-
                 informacionFigura += "-------------------------------\n";
 
-                figuras.add(informacionFigura);
                 System.out.println(informacionFigura);
+            } else if (opcion == 7) {
+                if (figuras.isEmpty()) {
+                    System.out.println("No hay figuras guardadas.");
+                } else {
+                    System.out.println("-------------------------------");
+                    System.out.println("    FIGURAS GUARDADAS          ");
+                    System.out.println("-------------------------------");
+                    for (Figura figura : figuras) {
+                        System.out.println(figura.toString());
+                        System.out.println("Área: " + figura.calcularArea());
+                        if (figura instanceof Triangulo || figura instanceof Cuadrado || figura instanceof Circulo) {
+                            System.out.println("Perímetro: " + figura.calcularPerimetro());
+                        }
+                        if (figura instanceof Piramide) {
+                            System.out.println("Volumen: " + ((Piramide) figura).calcularVolumen());
+                        } else if (figura instanceof Cubo) {
+                            System.out.println("Volumen: " + ((Cubo) figura).calcularVolumen());
+                        } else if (figura instanceof Esfera) {
+                            System.out.println("Volumen: " + ((Esfera) figura).calcularVolumen());
+                        }
+                        System.out.println("-------------------------------");
+                    }
+                }
             }
         } while (opcion != 7);
-
-        // Imprimir  las figuras guardadas
-        System.out.println("-------------------------------");
-        System.out.println("    FIGURAS GUARDADAS          ");
-        System.out.println("-------------------------------");
-        for (String figura : figuras) {
-            System.out.println(figura);
-        }
     }
 
     private static void leerPuntos(Figura figura, Scanner scanner, int cantidadPuntos) {

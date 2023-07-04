@@ -34,4 +34,8 @@ public class Piramide extends Triangulo {
 
         return perimetroBase;
     }
+    @Override
+    public String toString() {
+        return "Pirámide";
+    }
 }

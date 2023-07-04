@@ -14,4 +14,8 @@ public class Cuadrado extends Figura {
         double lado = a.calcularDistancia(b);
         return 4 * lado;
     }
+    @Override
+    public String toString() {
+        return "Cuadrado";
+    }
 }

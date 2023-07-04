@@ -18,4 +18,8 @@ public class Triangulo extends Figura {
         double ladoBC = b.calcularDistancia(c);
         double ladoCA = c.calcularDistancia(a);
         return ladoAB + ladoBC + ladoCA;
-    }}
+    }
+    public String toString() {
+        return "Triángulo";
+    }
+}
