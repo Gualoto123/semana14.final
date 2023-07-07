@@ -17,6 +17,10 @@ public class Esfera extends Circulo {
         return (4 * Math.PI * radio * radio * radio) / 3;
     }
     @Override
+    public double calcularPerimetro() {
+        return 0;
+    }
+    @Override
     public String toString() {
         return "Esfera";
     }
